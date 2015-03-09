@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+{% autoescape true %}
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" id="font-awesome-css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" type="text/css" media="screen">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+
+    <title>SingAlongSingapore</title>
+</head>
+
+<body>
+<nav class="navbar navbar-default navbar-static-top">
+
+    <div class="container-fluid">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/"><img id="logo" alt="SG50 Musical Logo" src="img/logo.png"><p id="name">Sing-Along Singapore</p></a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Streams<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Featured</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">National Day Songs</a></li>
+                        <li><a href="#">SG50 Songs</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">English Folk Songs</a></li>
+                        <li><a href="#">Chinese Folk Songs</a></li>
+                        <li><a href="#">Malay Folk Songs</a></li>
+                        <li><a href="#">Indian Folk Songs</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+            </form>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/stories">Stories</a></li>
+                <li><a href="/feedback">Feedback</a></li>
+                <li><a href="/about">About</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Account<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="{{ url|safe }}">{{ url_linktext }}</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="jumbotron">
+        <h1>Sing-Along Singapore</h1>
+        <h2>Celebrating 50 years of Singapore's music culture!</h2>
+        <br>
+        <p class="lead">Ever wanted a place where you could find all those National Day Songs of the past? <br> Maybe that catchy old tune of 'Chan Mali Chan'? </p>
+        <p>Well, look no further, because Sing-Along Singapore is here!</p>
+        <br>
+        {% if not user %}
+        <p>
+            <a class="btn btn-lg btn-success" href="{{ url|safe }}" role="button">Login / Sign-up now!</a>
+        </p>
+        {% else %}
+        <p>
+            <a class="btn btn-lg btn-success" href="#" role="button">Check it out now!</a>
+        </p>
+        {% endif %}
+    </div>
+
+    <div class="row content">
+        <div class="col-lg-6">
+            <h1>Stories</h1>
+            <br>
+            <p>Share your stories here!</p>
+            <p>Does a particular song remind you of a certain memory?</p>
+            <p>Did 'Count on me, Singapore' leave a huge impression on you while growing up?</p>
+            <p>Whatever the story, wherever the place, share it here in celebration of SG50!</p>
+            <p>
+                <a class="btn btn-lg btn-success" href="/stories" role="button">Share your story!</a>
+            </p>
+        </div>
+        <div class="col-lg-6">
+            <h3>Feedback</h3>
+            <p>How do you find this web application? Do you have any suggestions?</p>
+            <p>Feel free to leave a comment!</p>
+            <p>
+                <a class="btn btn-lg btn-success" href="/feedback" role="button">Feedback</a>
+            </p>
+            <hr>
+            <h4>About</h4>
+            <p>For more information on this web application and other related items,
+            <p>do check out this page!</p>
+            <p>
+                <a class="btn btn-lg btn-success" href="/about" role="button">About</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="scroll-top-wrapper ">
+	<span class="scroll-top-inner">
+		<i class="fa fa-2x fa-arrow-circle-up"></i>
+	</span>
+</div>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+
+</body>
+</html>
+{% endautoescape %}
