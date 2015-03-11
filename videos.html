@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+{% autoescape true %}
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" id="font-awesome-css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" type="text/css" media="screen">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+
+    <title>SingAlongSingapore</title>
+</head>
+
+<body>
+<nav class="navbar navbar-default navbar-static-top">
+
+    <div class="container-fluid">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/"><img id="logo" alt="SG50 Musical Logo" src="img/logo.png"><p id="name">Sing-Along Singapore</p></a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Streams<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="/featured">Featured</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/national">National Day Songs</a></li>
+                        <li><a href="/sg50">SG50 Songs</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/english">English Songs</a></li>
+                        <li><a href="/chinese">Chinese Songs</a></li>
+                        <li><a href="/malay">Malay Songs</a></li>
+                        <li><a href="/tamil">Tamil Songs</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/uploadedvids">Upload Your Own Songs!</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <form class="navbar-form navbar-left" role="search" action="/search">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="search" placeholder="Search">
+                </div>
+            </form>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/stories">Stories</a></li>
+                <li><a href="/feedback">Feedback</a></li>
+                <li><a href="/about">About</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Account<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="{{ url|safe }}">{{ url_linktext }}</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <h2>Upload Stream!</h2>
+    <hr>
+    <p>This is where you can upload your own songs to share with others!</p>
+    <p>Just include the YouTube URL Link of the video, and give a short description of it, and you're good to go!</p>
+    <hr>
+    {% for video in videos %}
+    {% if video.author %}
+    <b>{{ video.author.email }}
+        {% if user and user.user_id() == video.author.identity %}
+        (You)
+        {% endif %}
+    </b> uploaded:
+    {% endif %}
+    <blockquote><b>Title: </b> {{ video.title }} <br> <b>Description: </b> {{ video.content }} <br><iframe width=325em height=300em src="http://www.youtube.com/embed/{{ video.youtube_link }}" frameborder="0" allowfullscreen></iframe></blockquote>
+    {% if user and user.user_id() == video.author.identity %}
+    <form action="/delete_video?id={{ video.key.id() }}" method="post">
+        <input type="submit" value="Delete this post">
+    </form>
+    <br>
+    <br>
+    <br>
+    {% endif %}
+    {% endfor %}
+
+    <hr>
+    {% if user %}
+    <h4>Upload your video:</h4>
+    <form action="/submit_video" method="post">
+        <div><textarea name="youtube_link" placeholder="YouTube URL Link"></textarea></div>
+        <div><textarea name="title" placeholder="Title"></textarea></div>
+        <div><textarea name="content" placeholder="Description" rows="3" cols="30"></textarea></div>
+        <div><input type="submit" value="Upload Video"></div>
+    </form>
+    {% else %}
+    <b>Please <a href="{{ url|safe }}">login</a> to upload your video!</b>
+    {% endif %}
+    <br>
+    <br>
+    <br>
+</div>
+
+<div class="scroll-top-wrapper ">
+	<span class="scroll-top-inner">
+		<i class="fa fa-2x fa-arrow-circle-up"></i>
+	</span>
+</div>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+
+</body>
+</html>
+{% endautoescape %}
