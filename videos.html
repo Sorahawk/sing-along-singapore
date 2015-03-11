@@ -85,7 +85,7 @@
         {% endif %}
     </b> uploaded:
     {% endif %}
-    <blockquote><b>Title: </b> {{ video.title }} <br> <b>Description: </b> {{ video.content }} <br><iframe width=325em height=300em src="http://www.youtube.com/embed/{{ video.youtube_link }}" frameborder="0" allowfullscreen></iframe></blockquote>
+    <blockquote><b>Title: </b> {{ video.title }} <br> <b>Description: </b> {{ video.content }} <br><iframe width=275em height=275em src="http://www.youtube.com/embed/{{ video.youtube_link }}" frameborder="0" allowfullscreen></iframe></blockquote>
     {% if user and user.user_id() == video.author.identity %}
     <form action="/delete_video?id={{ video.key.id() }}" method="post">
         <input type="submit" value="Delete this post">
