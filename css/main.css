@@ -30,6 +30,10 @@ nav {
     margin-top: 28px;
 }
 
+#easter_egg {
+    float: right;
+}
+
 @media (min-width: 75em) {
     nav {
         max-width: 75em;
