@@ -12,11 +12,19 @@ handlers:
 - url: /css
   static_dir: css
 
+- url: /songs_list.csv
+  static_files: songs_list.csv
+  upload: songs_list.csv
+  application_readable: true
+
 - url: /img
   static_dir: img
 
 - url: /js
   static_dir: js
+
+- url: /songs
+  static_dir: songs
 
 - url: /.*
   script: main.application
