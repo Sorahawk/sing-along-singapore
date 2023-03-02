@@ -1,3 +1,3 @@
 # SingAlongSingapore
 
-Check out the full web application at www.singalong50.appspot.com.
+Used to be hosted at www.singalong50.appspot.com, but it no longer works now.
